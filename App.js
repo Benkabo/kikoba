@@ -7,14 +7,23 @@ import HomePage from "./src/components/HomaPage";
 import Colors from "./Colors";
 import Jamii from "./src/components/Jamii";
 import RegisterScreen from "./src/screens/RegisterScreen";
-import Bima from './src/components/Bima';
+import Bima from "./src/components/Bima";
 
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={StartScreen}>
+      <Stack.Navigator
+        initialRouteName={StartScreen}
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: Colors.lightblue,
+          },
+          headerTitleAlign: "center",
+          headerTintColor: Colors.darkWhite,
+        }}
+      >
         <Stack.Screen
           name="Loading"
           component={StartScreen}
@@ -28,44 +37,22 @@ export default function App() {
         <Stack.Screen
           name="Signup"
           component={RegisterScreen}
-          options={{ headerTitleAlign: 'center',
-          headerTitle: "REGISTER",}}
+          options={{ title: "REGISTER" }}
         />
         <Stack.Screen
           name="Home"
           component={HomePage}
-          options={{
-            headerTitleAlign: "center",
-            headerTitle: "KARIBU",
-            headerTintColor: Colors.darkWhite,
-            headerStyle: {
-              backgroundColor: Colors.lightblue,
-            },
-          }}
+          options={{ title: "KARIBU" }}
         />
         <Stack.Screen
           name="Jamii"
           component={Jamii}
-          options={{
-            headerTitleAlign: "center",
-            headerTitle: "MFUKO WA JAMII",
-            headerTintColor: Colors.darkWhite,
-            headerStyle: {
-              backgroundColor: Colors.lightblue,
-            },
-          }}
+          options={{ title: "MFUKO WA JAMII" }}
         />
-         <Stack.Screen
+        <Stack.Screen
           name="Bima"
           component={Bima}
-          options={{
-            headerTitleAlign: "center",
-            headerTitle: "MFUKO WA JAMII",
-            headerTintColor: Colors.darkWhite,
-            headerStyle: {
-              backgroundColor: Colors.lightblue,
-            },
-          }}
+          options={{ title: "BIMA" }}
         />
       </Stack.Navigator>
     </NavigationContainer>
