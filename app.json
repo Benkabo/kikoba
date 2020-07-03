@@ -1,0 +1,12 @@
+{
+  "name": "kikoba",
+  "displayName": "kikoba",
+  "expo": {
+    "name": "kikoba",
+    "slug": "kikoba",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
