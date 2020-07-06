@@ -14,6 +14,7 @@ export default function RegisterScreen() {
   const [lastname, setLastName] = useState("");
   const [phone, setPhone] = useState("");
   const [group, setGroup] = useState("");
+  const [password, setPassword] = useState('')
   const [enableShift, setEnableShift] = useState(false);
 
   const theme = {
@@ -61,6 +62,8 @@ export default function RegisterScreen() {
           theme={theme}
           style={{ marginBottom: 10 }}
           secureTextEntry={true}
+          value={password}
+          onChangeText={(val) => setPassword(val)}
         />
         <TextInput
           label="Jina la Kundi"
