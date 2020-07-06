@@ -8,6 +8,7 @@ import HomaPage from "../components/HomaPage";
 import Jamii from "../components/Jamii";
 import Bima from "../components/Bima"
 import Colors from "../../Colors";
+import Drawer from "./MainDrawerNavigator";
 
 const Stack = createStackNavigator();
 
