@@ -22,7 +22,7 @@ const MainDrawerNavigator = () => {
   return (
     <NavigationContainer>
       <Drawer.Navigator>
-        <Drawer.Screen name="Home" children={HomeStackScreen} />
+        <Drawer.Screen name="Home" children={HomeStackScreen()} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
