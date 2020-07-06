@@ -89,7 +89,7 @@ export default function RegisterScreen() {
                 color: Colors.darkWhite,
               }}
             >
-              SAJIRI
+              SAJILI
             </Text>
           </TouchableOpacity>
         </View>
