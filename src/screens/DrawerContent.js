@@ -2,7 +2,6 @@ import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer'
 import { TouchableRipple, Switch, Drawer, } from 'react-native-paper'
-import Feather from "react-native-vector-icons/";
 import Colors from '../../Colors'
 
 export function DrawerContent(props) {
@@ -14,10 +13,7 @@ export function DrawerContent(props) {
                 </View>
             </DrawerContentScrollView>
             <Drawer.Section style={styles.bottomDrawerSection}>
-                <DrawerItem 
-                  icon={}
-                  label='Sign Out'
-                />
+                <DrawerItem />
             </Drawer.Section>
         </View>
     )
