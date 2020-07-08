@@ -16,6 +16,6 @@ export default function App() {
   if (loading) {
     return <Splash />;
   }
-  // return <MainStackNavigator />;
-  return <MainDrawerNavigator />
+  return <MainStackNavigator />;
+  // return <MainDrawerNavigator />
 }
