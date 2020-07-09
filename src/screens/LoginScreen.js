@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   Text,
   View,
@@ -10,7 +10,13 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
 import colors from "../../Colors";
 
+import { AuthContext } from '../../context/context'
+
+
 export default LoginScreen = ({navigation}) => {
+
+  const { signIn } = useContext(AuthContext)
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -39,7 +45,7 @@ export default LoginScreen = ({navigation}) => {
           <Feather name="eye-off" size={20} />
         </View>
         <View style={styles.button}>
-          <TouchableOpacity style={styles.signIn} onPress={() => navigation.navigate('Home')}>
+          <TouchableOpacity style={styles.signIn} onPress={() => signIn()}>
             <Text style={[styles.textSign, { color: colors.darkWhite }]}>
               Login
             </Text>

@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TextInput } from "react-native";
 import Colors from "../../Colors";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-export default function Jamii() {
+export default function Bima() {
   const [value, setValue] = useState("");
   return (
     <View style={styles.container}>
