@@ -8,7 +8,7 @@ export default HomePage = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text>Header</Text>
+        {/* <Text>Header</Text> */}
       </View>
       <View style={styles.footer}>
         <TouchableOpacity style={styles.button}>
