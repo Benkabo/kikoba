@@ -5,11 +5,9 @@ import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-import { AuthContext } from "../../context/context";
-
 export function DrawerContent(props) {
   return (
-    <View style={{ flex: 1 , marginTop: 30}}>
+    <View style={{ flex: 1, marginTop: 30 }}>
       <DrawerContentScrollView {...props}>
         <View style={styles.drawerContent}>
           <Drawer.Section style={styles.drawerSection}>
@@ -24,7 +22,11 @@ export function DrawerContent(props) {
             />
             <DrawerItem
               icon={({ color, size }) => (
-                <Icon name="account-multiple-plus-outline" color={color} size={size} />
+                <Icon
+                  name="account-multiple-plus-outline"
+                  color={color}
+                  size={size}
+                />
               )}
               label="ONGEZA AKAUNTI"
               onPress={() => {

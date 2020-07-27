@@ -1,10 +1,9 @@
-import react, { createContext } from "react";
+import * as firebase from 'firebase'
 
 const FirebaseContext = createContext(null);
 export { FirebaseContext };
 
-const Provider = ({ children }) => {
-  if (!app.apps.length) {
+
     const firebaseConfig = {
       apiKey: "AIzaSyBMBZM9ronprOvV-yZj-R0yZiLwVAsveAc",
       authDomain: "vikoba-d125d.firebaseapp.com",
@@ -15,9 +14,8 @@ const Provider = ({ children }) => {
       appId: "1:921164129662:web:9a35c19b52235355b77f2f",
     };
 
-    app.initializeApp(firebaseConfig);
-  }
-  return (
-    <FirebaseContext.Provider value={app}>{children}</FirebaseContext.Provider>
-  );
-};
+    if(!firebase.app.length) {
+      firebase.initializeApp(firebaseConfig)
+    }
+
+    export { firebase }

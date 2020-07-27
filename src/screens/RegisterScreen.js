@@ -9,12 +9,15 @@ import {
 import { TextInput } from "react-native-paper";
 import Colors from "../../Colors";
 
-export default function RegisterScreen() {
+import { firebase } from "../../utils/firebase";
+
+export default function RegisterScreen({ navigation }) {
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [phone, setPhone] = useState("");
   const [group, setGroup] = useState("");
-  const [password, setPassword] = useState('')
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const [enableShift, setEnableShift] = useState(false);
 
   const theme = {
@@ -22,6 +25,37 @@ export default function RegisterScreen() {
       primary: Colors.lightblue,
     },
   };
+
+  const onRegisterPress = () => {
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((response) => {
+        const uid = response.uid;
+        const data = {
+          id: uid,
+          email,
+          firstname,
+          lastname,
+          phone,
+          group,
+        };
+        const usersRef = firebase.firestore().collection("users");
+        usersRef
+          .doc(uid)
+          .set(data)
+          .then(() => {
+            navigation.navigate('Home', {user: data});
+          })
+          .catch((error) => {
+            alert(error);
+          });
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  };
+
   return (
     <KeyboardAvoidingView
       behavior="position"
@@ -57,6 +91,16 @@ export default function RegisterScreen() {
           onChangeText={(val) => setPhone(val)}
         />
         <TextInput
+          label="Email"
+          mode="outlined"
+          theme={theme}
+          style={{ marginBottom: 10 }}
+          value={email}
+          onChangeText={(val) => setEmail(val)}
+          underlineColorAndroid="transparent"
+          autoCapitalize="none"
+        />
+        <TextInput
           label="Neno la siri"
           mode="outlined"
           theme={theme}
@@ -81,7 +125,10 @@ export default function RegisterScreen() {
           style={{ marginBottom: 10 }}
         />
         <View style={styles.button}>
-          <TouchableOpacity style={styles.signin}>
+          <TouchableOpacity
+            style={styles.signin}
+            onPress={() => onRegisterPress()}
+          >
             <Text
               style={{
                 fontSize: 20,
@@ -102,7 +149,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginHorizontal: 20,
-    marginTop: 50,
+    marginTop: 20,
   },
   button: {
     alignItems: "center",
