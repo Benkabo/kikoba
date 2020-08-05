@@ -26,36 +26,6 @@ export default function RegisterScreen({ navigation }) {
     },
   };
 
-  const onRegisterPress = () => {
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then((response) => {
-        const uid = response.uid;
-        const data = {
-          id: uid,
-          email,
-          firstname,
-          lastname,
-          phone,
-          group,
-        };
-        const usersRef = firebase.firestore().collection("users");
-        usersRef
-          .doc(uid)
-          .set(data)
-          .then(() => {
-            navigation.navigate('Home', {user: data});
-          })
-          .catch((error) => {
-            alert(error);
-          });
-      })
-      .catch((error) => {
-        alert(error);
-      });
-  };
-
   return (
     <KeyboardAvoidingView
       behavior="position"
@@ -125,10 +95,7 @@ export default function RegisterScreen({ navigation }) {
           style={{ marginBottom: 10 }}
         />
         <View style={styles.button}>
-          <TouchableOpacity
-            style={styles.signin}
-            onPress={() => onRegisterPress()}
-          >
+          <TouchableOpacity style={styles.signin}>
             <Text
               style={{
                 fontSize: 20,
