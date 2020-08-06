@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
+import { YellowBox } from 'react-native'
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloClient } from "apollo-client";
 import { HttpLink } from "apollo-link-http";
@@ -17,6 +18,7 @@ const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
 export default function App() {
+  YellowBox.ignoreWarnings(['Setting a timer'])
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
 
