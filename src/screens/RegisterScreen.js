@@ -5,13 +5,45 @@ import {
   StyleSheet,
   TouchableOpacity,
   KeyboardAvoidingView,
+  Alert,
 } from "react-native";
+
 import { TextInput } from "react-native-paper";
 import Colors from "../../Colors";
 
-import { firebase } from "../../utils/firebase";
+import Firebase from "../../utils/firebase";
+import 'firebase/firestore'
 
 export default function RegisterScreen({ navigation }) {
+  const onRegisterPress = () => {
+    Firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((response) => {
+        const uid = response.user.uid;
+        const data = {
+          id: uid,
+          email,
+          firstname,
+          lastname,
+          phone,
+          group,
+        };
+        const usersRef = Firebase.firestore().collection("users");
+        usersRef
+          .doc(uid)
+          .set(data)
+          .then()
+          .catch((error) => {
+            console.log("No data sent to firebase", error);
+            alert(error);
+          });
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  };
+
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [phone, setPhone] = useState("");
@@ -95,7 +127,10 @@ export default function RegisterScreen({ navigation }) {
           style={{ marginBottom: 10 }}
         />
         <View style={styles.button}>
-          <TouchableOpacity style={styles.signin}>
+          <TouchableOpacity
+            style={styles.signin}
+            onPress={() => onRegisterPress()}
+          >
             <Text
               style={{
                 fontSize: 20,

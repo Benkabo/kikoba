@@ -4,7 +4,7 @@ import Colors from "../../Colors";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
-export default HomePage = ({ navigation }) => {
+export default HomePage = ( props, { navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>

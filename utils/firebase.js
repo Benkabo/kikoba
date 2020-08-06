@@ -1,7 +1,7 @@
-import firebase from 'firebase'
+import * as firebase from 'firebase'
 
 
-  const config = {
+  const firebaseConfig = {
     apiKey: "AIzaSyBMBZM9ronprOvV-yZj-R0yZiLwVAsveAc",
     authDomain: "vikoba-d125d.firebaseapp.com",
     databaseURL: "https://vikoba-d125d.firebaseio.com",
@@ -11,8 +11,6 @@ import firebase from 'firebase'
     appId: "1:921164129662:web:9a35c19b52235355b77f2f",
   };
 
-  if(!firebase.app.length) {
-      firebase.initializeApp(config)
-  }
+ const Firebase = firebase.initializeApp(firebaseConfig)
 
-  export default firebase;
+  export default Firebase;

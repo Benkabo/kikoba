@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { createStackNavigator } from "@react-navigation/stack";
 
-import HomaPage from "../components/Home";
+import HomePage from "../components/Home";
 import Jamii from "../components/Jamii";
 import Bima from "../components/Bima";
 import Colors from "../../Colors";
@@ -22,7 +22,7 @@ const MainStackNavigator = ({ navigation }) => {
     >
       <Stack.Screen
         name="Home"
-        component={HomaPage}
+        component={HomePage}
         options={{ title: "KARIBU" }}
       />
       <Stack.Screen

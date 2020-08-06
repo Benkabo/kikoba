@@ -17,6 +17,7 @@ const AuthStackNavigator = () => {
         },
         headerTitleAlign: "center",
         headerTintColor: Colors.darkWhite,
+        headerLeft: null,
       }}
     >
       <AuthStack.Screen
@@ -27,7 +28,7 @@ const AuthStackNavigator = () => {
       <AuthStack.Screen
         name="Login"
         component={LoginScreen}
-        options={{ headerShown: false }}
+        options={{ title: "Login" }}
       />
       <AuthStack.Screen
         name="Signup"
