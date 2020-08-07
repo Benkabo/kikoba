@@ -33,7 +33,7 @@ const AuthStackNavigator = () => {
       <AuthStack.Screen
         name="Signup"
         component={RegisterScreen}
-        options={{ title: "REGISTER" }}
+        options={{ title: "TENGENEZA KUNDI" }}
       />
     </AuthStack.Navigator>
   );
