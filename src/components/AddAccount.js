@@ -3,7 +3,10 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native-paper";
 import Colors from "../../Colors";
 
-export default function AddAccount() {
+import { createStackNavigator } from "@react-navigation/stack";
+const Stack = createStackNavigator();
+
+const AddAccount = () => {
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [phone, setPhone] = useState("");
@@ -17,7 +20,7 @@ export default function AddAccount() {
   return (
     <View style={styles.container}>
       <TextInput
-        label="Jina la kwanza"
+        label="Firstname"
         mode="outlined"
         theme={theme}
         style={{ marginBottom: 10 }}
@@ -25,7 +28,7 @@ export default function AddAccount() {
         onChangeText={(val) => setFirstName(val)}
       />
       <TextInput
-        label="Jina la Mwisho"
+        label="Lastname"
         mode="outlined"
         theme={theme}
         style={{ marginBottom: 10 }}
@@ -33,16 +36,15 @@ export default function AddAccount() {
         onChangeText={(val) => setLastName(val)}
       />
       <TextInput
-        label="Namba ya simu"
+        label="Email"
         mode="outlined"
         theme={theme}
-        keyboardType="numeric"
         style={{ marginBottom: 10 }}
         value={phone}
         onChangeText={(val) => setPhone(val)}
       />
       <TextInput
-        label="Neno la siri"
+        label="Password"
         mode="outlined"
         theme={theme}
         style={{ marginBottom: 10 }}
@@ -59,11 +61,27 @@ export default function AddAccount() {
               color: Colors.darkWhite,
             }}
           >
-            TUMA
+            ADD
           </Text>
         </TouchableOpacity>
       </View>
     </View>
+  );
+};
+
+export default function AddAccountStack({ navigation }) {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: Colors.lightblue,
+        },
+        headerTitleAlign: "center",
+        headerTintColor: Colors.darkWhite,
+      }}
+    >
+      <Stack.Screen name="Add Account" component={AddAccount} />
+    </Stack.Navigator>
   );
 }
 
@@ -71,7 +89,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginHorizontal: 20,
-    marginTop: 50,
+    // marginTop: 50,
+    justifyContent: "center",
   },
   button: {
     alignItems: "center",

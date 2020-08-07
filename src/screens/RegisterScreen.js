@@ -8,39 +8,71 @@ import {
   Alert,
 } from "react-native";
 
+import {
+  ApolloClient,
+  InMemoryCache,
+  useQuery,
+  gql,
+  ApolloProvider,
+  useLazyQuery,
+  useMutation,
+} from "@apollo/client";
+
 import { TextInput } from "react-native-paper";
 import Colors from "../../Colors";
 
 import Firebase from "../../utils/firebase";
-import 'firebase/firestore'
+import "firebase/firestore";
 
 export default function RegisterScreen({ navigation }) {
+
+  const [addUser] = useMutation(ADD_USER)
+
   const onRegisterPress = () => {
-    Firebase
-      .auth()
+    Firebase.auth()
       .createUserWithEmailAndPassword(email, password)
-      .then((response) => {
-        const uid = response.user.uid;
-        const data = {
-          id: uid,
-          email,
-          firstname,
-          lastname,
-          phone,
-          group,
-        };
-        const usersRef = Firebase.firestore().collection("users");
-        usersRef
-          .doc(uid)
-          .set(data)
-          .then()
-          .catch((error) => {
-            console.log("No data sent to firebase", error);
-            alert(error);
-          });
+      .then( async (response) => {
+        // const uid = response.user.uid;
+        // const data = {
+        //   id: uid,
+        //   email,
+        //   firstname,
+        //   lastname,
+        //   phone,
+        //   group,
+        // };
+        // const usersRef = Firebase.firestore().collection("users");
+        // usersRef
+        //   .doc(uid)
+        //   .set(data)
+        //   .then()
+        //   .catch((error) => {
+        //     console.log("No data sent to firebase database", error);
+        //     alert(error);
+        //   });
+          let user = Firebase.auth().currentUser;
+          try {
+            const updateProfile = await user.updateProfile({
+              displayName: firstname,
+            })
+            const updateUserData = await addUser({
+              variables: {
+                firstname,
+                lastname,
+                email,
+                phone,
+                group,
+                id: user.uid
+              }
+            })
+            console.log("User db details", updateUserData)
+            console.log("User details", updateProfile)
+          } catch (e) {
+            console.log("Exception", e)
+          }
       })
       .catch((error) => {
-        alert(error);
+        alert("Failed to create user",error);
       });
   };
 
@@ -146,6 +178,31 @@ export default function RegisterScreen({ navigation }) {
     </KeyboardAvoidingView>
   );
 }
+
+const ADD_USER = gql`
+  mutation insert_users_one(
+    $email: String!
+    $firstname: String!
+    $group: String!
+    $id: String!
+    $lastname: String!
+    $phone: String!
+  ) {
+    insert_users(
+      objects: {
+        email: $email
+        firstname: $firstname
+        id: $id
+        group: $group
+        lastname: $lastname
+        phone: $phone
+      }
+    ) {
+      affected_rows
+    }
+  }
+`;
+
 
 const styles = StyleSheet.create({
   container: {
